@@ -61,6 +61,13 @@ describe('Sign in form test suites', () => {
         // car il doit être affiché car l'email n'est pas valide
         expect(getByTestId(document.body, 'user-email-error-msg')).not.toHaveClass('hidden')
     })
+    // avec querySelector 
+    it('should return an error if the user email is not valid', () => {
+        const $mailInput = document.querySelector('#user-email')
+        $mailInput.value = 'thomas@thomas.com'
+        userEvent.click(getByRole(document.body, 'button'))
+        expect(getByTestId(document.body, 'user-email-error-msg')).not.toHaveClass('hidden')
+    })
 
     it('should return an error if the user password is not writen', () => {
         userEvent.type(getByLabelText(document.body, 'Votre addresse e-mail'), goodEmail)
