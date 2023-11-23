@@ -4,11 +4,7 @@
 
 // Ici j'importe DOM Test Library
 import '@testing-library/jest-dom' 
-import {
-    getByRole,
-    getByTestId,
-    getByLabelText
-} from '@testing-library/dom'
+import { getByRole, getByTestId, getByLabelText} from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 
 import SignInPage from '../../pages/signIn/index'
@@ -63,8 +59,7 @@ describe('Sign in form test suites', () => {
     })
     // avec querySelector 
     it('should return an error if the user email is not valid', () => {
-        const $mailInput = document.querySelector('#user-email')
-        $mailInput.value = 'thomas@thomas.com'
+        document.querySelector('#user-email').value = 'thomas@thomas'
         userEvent.click(getByRole(document.body, 'button'))
         expect(getByTestId(document.body, 'user-email-error-msg')).not.toHaveClass('hidden')
     })
